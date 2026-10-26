@@ -1,0 +1,11 @@
+[
+  {"category": "news", "query": "2026年10月 AI 行业最新融资动态"},
+  {"category": "news", "query": "latest stable Python release October 2026"},
+  {"category": "news", "query": "Qoder IDE 最新版本功能"},
+  {"category": "tech", "query": "MCP Model Context Protocol streamable HTTP transport 规范要点"},
+  {"category": "tech", "query": "qwen3-max context window 大小与定价"},
+  {"category": "tech", "query": "Next.js 16 release breaking changes"},
+  {"category": "claim", "query": "Python 3.13 是否移除了 GIL"},
+  {"category": "claim", "query": "Kimi K2 模型是否开源"},
+  {"category": "claim", "query": "HTTP/3 是否默认使用 QUIC 协议"}
+]

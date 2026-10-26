@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions & usage help
+    url: https://github.com/ai-guru-global/deepdig/discussions
+    about: Ask how to wire deepdig into your IDE or agent stack.
+  - name: Security vulnerabilities
+    url: https://github.com/ai-guru-global/deepdig/security/advisories/new
+    about: Please report security issues privately — do not open a public issue.

@@ -1,5 +1,13 @@
 # DeepDig (深掘)
 
+[![CI](https://github.com/ai-guru-global/deepdig/actions/workflows/ci.yml/badge.svg)](https://github.com/ai-guru-global/deepdig/actions/workflows/ci.yml)
+[![PyPI](https://img.shields.io/pypi/v/deepdig)](https://pypi.org/project/deepdig/)
+[![Python](https://img.shields.io/pypi/pyversions/deepdig)](https://pypi.org/project/deepdig/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](./LICENSE)
+[![Code style: ruff](https://img.shields.io/badge/style-ruff-261230.svg)](https://docs.astral.sh/ruff/)
+[![Tests](https://img.shields.io/badge/tests-passing-brightgreen.svg)](https://github.com/ai-guru-global/deepdig/actions/workflows/ci.yml)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](./CONTRIBUTING.md)
+
 > **High-Performance Multi-Agent Web Search & Fact-Checking MCP Server**
 > *A project by [ai-guru-global](https://github.com/ai-guru-global), created and maintained by [@allengaller](https://github.com/allengaller).*
 
@@ -60,6 +68,49 @@
   - **BYOK 本地模式**：开发者直接读取本地环境变量，零成本随 IDE 启动。
   - **远端 Gateway 模式（可选）**：通过 SSE 服务端集中管理底层 Token，客户端开箱即用。
 - **全平台协议兼容**：遵循标准 MCP 规范，无缝挂载至 Qoder、CodeBuddy、Cursor、Windsurf 及 Claude Desktop。
+
+---
+
+## 竞品对比与项目评估
+
+> 对比数据基于 2026-09/10 公开资料（见文末来源），竞品功能以官方文档为准。
+
+### 生态位：检索分层中的“多源仲裁层”
+
+| 产品 | 层级定位 | 检索机制 | 多源交叉验证 | 中文生态 | 部署形态 | 计费模式 |
+| --- | --- | --- | --- | --- | --- | --- |
+| **DeepDig** | **认知/仲裁层** | 消费三家原生 LLM 联网检索的**预综合结果**并仲裁 | ✅ 内建（URL 归并 + ✦ 标记） | ✅ 原生（Qwen/GLM/Kimi） | BYOK 本地 / 自托管 Gateway | 自付模型 API（无中间商加价） |
+| Tavily | 通用检索 API | 自建 RAG 索引 + 结构化结果 | ❌ 单源 | 一般（海外服务） | 云托管 SaaS | 按调用计费（信用点） |
+| Firecrawl | 爬取基建层 | 搜索 + 反爬 + 页面清洗为 Markdown | ❌ 单源 | 一般 | 云托管 / 可自部署 | 按额度计费 |
+| Exa | 语义检索层 | 神经/语义索引，学术内容见长 | ❌ 单源 | 一般 | 云托管 SaaS | 按调用计费 |
+| Brave Search | 独立索引层 | 自建 300 亿+ 网页索引，隐私友好 | ❌ 单源 | 一般 | 云托管 API | 免费额度 + 按量 |
+| AnySearch | 国内垂直基建 | 20+ 自建垂类索引 + 意图路由 | ❌ 单源 | ✅ 原生 | 云托管 / 私有化 | 免费额度 + 按量 |
+| 官方单引擎 MCP（百炼/智谱/千帆） | 单引擎包装 | 仅自家模型联网检索 | ❌ 单源 | ✅ | 云托管 Streamable HTTP | 按量（如百炼 29 元/千次） |
+| SearXNG / DuckDuckGo MCP | 聚合 SERP 层 | 元搜索返回原始结果列表 | ⚠️ 多引擎但无仲裁 | 一般 | 本地自部署 | 免费 |
+
+**一句话定位**：Tavily 们回答“搜到了什么”，DeepDig 回答“**哪些信息彼此印证、哪些存在冲突**”。多源仲裁 + 中文生态 + 零中间商，是目前检索分层中的空位。
+
+### 项目质量自评
+
+| 维度 | 现状 | 评估 |
+| --- | --- | --- |
+| 架构设计 | Fork-Join 管道、8s 熔断、Provider 完全隔离、entry-point 插件机制 | ✅ 清晰、可扩展 |
+| 工程质量 | ruff 全绿、20 个离线单测（HTTP 全 mock）、CI 3.11/3.12 矩阵 | ✅ 达标 |
+| 容错与韧性 | 重试 + 滑动窗口健康统计 + 单点失败不阻断 | ✅ 生产可用基线 |
+| 上下文效率 | 单引擎预算截断、去重、TTL 缓存 | ✅ 对 IDE 场景友好 |
+| 生态成熟度 | v0.1.0 早期，社区与插件生态待建设 | ⚠️ 早期阶段 |
+| Benchmark | 评测工具已就位，公开数据集结果待发布 | ⚠️ 待补数据 |
+
+### 客观局限（选型须知）
+
+- **成本结构**：每次查询消耗三家 LLM API token；对比免费方案（SearXNG/DuckDuckGo）无成本优势，换取的是可信度。
+- **延迟**：LLM 综合检索需 3~6s，慢于直接 SERP API（<1s）；已用 8s 熔断 + 缓存约束上界。
+- **结果形态**：返回的是各引擎**综合后的结论**而非原始 SERP 列表——适合事实核查，不适合需要原始结果自己重排的场景（那请用 Tavily/Brave）。
+- **成熟度**：v0.1.0，API 可能随版本调整。
+
+**选型建议**：实时事实核查、技术调研、中文场景、不想被单一搜索商锁定 → DeepDig；英文深度研究 → Tavily/Exa；批量抓取建库 → Firecrawl；零成本兜底 → SearXNG。
+
+<sub>来源：[搜索类 MCP Server 选型全解析（2026）](https://www.ithome.com/1/008/767.htm) · [AI Agent 搜索 MCP 选型推荐](https://www.ithome.com/1/008/153.htm) · [阿里云百炼联网搜索 MCP](https://help.aliyun.com/zh/model-studio/web-search-for-coding-plan) · [智谱搜索 MCP Server](https://www.iai88.com/go/?url=aHR0cHM6Ly9kb2NzLmJpZ21vZGVsLmNuL2NuL2NvZGluZy1wbGFuL21jcC9zZWFyY2gtbWNwLXNlcnZlcg==)</sub>
 
 ---
 
@@ -271,6 +322,16 @@ pip install deepdig
 uv run python bench/run_bench.py          # 使用内置 query 集，报告写入 bench/reports/
 uv run python bench/run_bench.py --full   # 报告内嵌完整聚合结果，便于人工溯源审计
 ```
+
+---
+
+## 参与贡献
+
+欢迎 PR！开发环境搭建、约定与 Provider 插件指南见 [CONTRIBUTING.md](./CONTRIBUTING.md)。Issue 请使用模板提交；安全漏洞请勿公开 Issue，走 [SECURITY.md](./SECURITY.md) 的私密渠道。
+
+## 更新日志
+
+见 [CHANGELOG.md](./CHANGELOG.md)（遵循 Keep a Changelog + SemVer）。
 
 ---
 

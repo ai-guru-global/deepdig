@@ -1,0 +1,43 @@
+{
+  "version": 1,
+  "world": "enterprise-carbon-white",
+  "source": "DESIGN.md",
+  "tokens": {
+    "color": {
+      "bg": "#ffffff",
+      "layer": "#f4f4f4",
+      "layer-hover": "#e8e8e8",
+      "text": "#161616",
+      "text-secondary": "#525252",
+      "text-tertiary": "#6f6f6f",
+      "interactive": "#0f62fe",
+      "interactive-hover": "#0353e9",
+      "interactive-tint": "#edf5ff",
+      "success": "#24a148",
+      "warning": "#f1c21b",
+      "danger": "#da1e28",
+      "border-subtle": "#e0e0e0",
+      "border-strong": "#8d8d8d",
+      "inverse-bg": "#161616",
+      "inverse-ink": "#f4f4f4",
+      "inverse-dim": "#c6c6c6",
+      "tag-blue-bg": "#d0e2ff",
+      "tag-blue-ink": "#003a6d",
+      "tag-green-bg": "#a7f0ba",
+      "tag-green-ink": "#0e6027",
+      "tag-yellow-bg": "#fdd13a",
+      "tag-yellow-ink": "#493d00",
+      "tag-red-bg": "#ffd7d9",
+      "tag-red-ink": "#a2191f"
+    },
+    "font": {
+      "sans": "'IBM Plex Sans','Noto Sans SC',sans-serif",
+      "mono": "'IBM Plex Mono','Noto Sans SC',ui-monospace,monospace"
+    },
+    "radius": { "all": "0" },
+    "border": { "subtle": "1px solid #e0e0e0", "strong": "1px solid #8d8d8d" },
+    "easing": "cubic-bezier(0.2,0,0.38,0.9)",
+    "duration": { "fast": "110ms", "reveal": "450ms" }
+  },
+  "surfaces": ["gtm/index.html", "config/index.html"]
+}

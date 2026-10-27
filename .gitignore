@@ -7,3 +7,8 @@ __pycache__/
 dist/
 build/
 bench/reports/
+
+# impeccable evidence (ephemeral)
+.impeccable/review/
+.impeccable/mocks/
+.impeccable/build/

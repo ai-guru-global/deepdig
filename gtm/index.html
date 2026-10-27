@@ -3,243 +3,248 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DeepDig · GTM 作战简报 2026 Q4</title>
-<meta name="description" content="deepdig 开源项目市场进入策略：定位、竞品格局、目标用户、渠道打法、90 天作战计划与增长指标。">
+<title>DeepDig · GTM 策略简报 · 2026 Q4</title>
+<meta name="description" content="deepdig 开源项目市场进入策略：定位、竞争格局、目标用户、渠道打法、90 天作战计划与增长指标。">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@600;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0a0d13; --bg-2:#0e131b; --panel:#101623;
-    --ink:#e9e4d6; --dim:#8b93a3; --faint:#525a68;
-    --amber:#ffb454; --amber-dim:rgba(255,180,84,.55);
-    --green:#5eff8b; --red:#ff6b6b; --blue:#6db3ff;
-    --line:rgba(139,147,163,.16); --line-2:rgba(139,147,163,.34);
-    --mono:"JetBrains Mono",ui-monospace,monospace;
-    --serif:"Noto Serif SC",serif;
-    --sans:"Noto Sans SC",sans-serif;
+    --blue:#0f62fe; --blue-hover:#0353e9; --blue-tint:#edf5ff; --blue-40:#78a9ff;
+    --text:#161616; --text-2:#525252; --text-3:#6f6f6f;
+    --border:#e0e0e0; --border-strong:#8d8d8d;
+    --bg:#ffffff; --layer:#f4f4f4; --layer-hover:#e8e8e8;
+    --green:#24a148; --green-tag-bg:#a7f0ba; --green-tag:#0e6027;
+    --yellow-tag-bg:#fdd13a; --yellow-tag:#493d00;
+    --red-tag-bg:#ffd7d9; --red-tag:#a2191f;
+    --blue-tag-bg:#d0e2ff; --blue-tag:#003a6d;
+    --sans:"IBM Plex Sans","Noto Sans SC","PingFang SC","Microsoft YaHei",sans-serif;
+    --mono:"IBM Plex Mono","Noto Sans SC",ui-monospace,monospace;
+    --ease:cubic-bezier(0.2,0,0.38,0.9);
   }
   *{margin:0;padding:0;box-sizing:border-box}
   html{scroll-behavior:smooth}
-  body{
-    background:
-      radial-gradient(1100px 500px at 70% -10%, rgba(255,180,84,.07), transparent 60%),
-      radial-gradient(900px 480px at 8% 12%, rgba(94,255,139,.05), transparent 60%),
-      repeating-linear-gradient(0deg, transparent 0 31px, rgba(139,147,163,.05) 31px 32px),
-      repeating-linear-gradient(90deg, transparent 0 31px, rgba(139,147,163,.05) 31px 32px),
-      var(--bg);
-    color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.75;
-  }
-  body::after{ /* grain */
-    content:""; position:fixed; inset:0; pointer-events:none; opacity:.5; mix-blend-mode:overlay;
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .04 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
-  }
-  .wrap{max-width:1100px;margin:0 auto;padding:0 28px}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:15px;line-height:1.7;
+       -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  ::selection{background:#d0e2ff;color:var(--text)}
+  a{color:var(--blue);text-decoration:none}
+  a:hover{text-decoration:underline;text-underline-offset:3px}
+  :focus-visible{outline:2px solid var(--blue);outline-offset:2px}
+  .wrap{max-width:1200px;margin:0 auto;padding:0 clamp(16px,4vw,40px)}
 
   /* ---------- masthead ---------- */
-  header{border-bottom:1px solid var(--line-2); background:rgba(10,13,19,.82); backdrop-filter:blur(6px);
-         position:sticky; top:0; z-index:50}
-  .mast{display:flex;align-items:center;gap:18px;padding:14px 0;flex-wrap:wrap}
-  .brand{font-family:var(--serif);font-weight:900;font-size:20px;letter-spacing:.06em}
-  .brand em{color:var(--amber);font-style:normal}
-  .meta{font-family:var(--mono);font-size:11px;color:var(--dim);letter-spacing:.14em;text-transform:uppercase}
-  .stamp{
-    margin-left:auto;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.22em;
-    color:var(--amber);border:2px solid var(--amber-dim);padding:5px 12px;transform:rotate(-3.5deg);
-    border-radius:3px;box-shadow:0 0 18px rgba(255,180,84,.12) inset;text-transform:uppercase;white-space:nowrap;
-  }
-  .crumbs{display:flex;gap:22px;padding:8px 0 10px;font-family:var(--mono);font-size:11.5px;color:var(--faint);
-          overflow-x:auto;white-space:nowrap;scrollbar-width:none}
-  .crumbs a{color:var(--dim);text-decoration:none}
-  .crumbs a:hover{color:var(--amber)}
+  .masthead{background:#161616;color:#f4f4f4;height:48px}
+  .masthead .wrap{height:100%;display:flex;align-items:center;gap:20px}
+  .brand{font-size:14px;font-weight:600;letter-spacing:.02em;display:flex;align-items:center;gap:10px;white-space:nowrap}
+  .brand b{font-weight:700}
+  .brand .sep{width:1px;height:16px;background:#393939}
+  .brand span{color:#c6c6c6;font-weight:400}
+  .mast-meta{margin-left:auto;display:flex;align-items:center;gap:14px;font-family:var(--mono);font-size:12px;color:#c6c6c6;white-space:nowrap}
+  .tag{display:inline-block;font-size:12px;line-height:1.35;padding:5px 9px;background:var(--blue-tag-bg);color:var(--blue-tag);font-weight:500;white-space:nowrap}
+  .tag.gray{background:#e0e0e0;color:#393939}
+  .tag.green{background:var(--green-tag-bg);color:var(--green-tag)}
+  .tag.yellow{background:var(--yellow-tag-bg);color:var(--yellow-tag)}
+  .tag.red{background:var(--red-tag-bg);color:var(--red-tag)}
+  .tag.blue{background:var(--blue-tag-bg);color:var(--blue-tag)}
 
-  /* ---------- hero ---------- */
-  .hero{padding:84px 0 60px;border-bottom:1px solid var(--line)}
-  .hero .tag{font-family:var(--mono);color:var(--green);font-size:12.5px;letter-spacing:.28em;text-transform:uppercase}
-  .hero h1{font-family:var(--serif);font-weight:900;font-size:clamp(34px,6vw,62px);line-height:1.22;margin:18px 0 20px}
-  .hero h1 .hl{color:var(--amber);position:relative;white-space:nowrap}
-  .hero h1 .hl::after{content:"";position:absolute;left:0;right:0;bottom:6px;height:10px;background:rgba(255,180,84,.16);z-index:-1}
-  .hero p.lead{max-width:46em;color:var(--dim);font-size:16.5px}
-  .hero p.lead b{color:var(--ink)}
-  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:44px}
-  .kpi{background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:8px;padding:18px 20px;position:relative;overflow:hidden}
-  .kpi::before{content:"";position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--amber),transparent)}
-  .kpi .n{font-family:var(--serif);font-weight:900;font-size:34px;color:var(--amber)}
-  .kpi .n small{font-size:15px;color:var(--dim);font-weight:600}
-  .kpi .l{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--dim);text-transform:uppercase;margin-top:2px}
+  .crumbbar{border-bottom:1px solid var(--border);background:var(--layer)}
+  .crumbbar .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:4px 10px;min-height:40px;padding-top:9px;padding-bottom:9px;font-family:var(--mono);font-size:12px;color:var(--text-2)}
+  .crumbbar a{color:var(--text-2)}
+  .crumbbar a:hover{color:var(--blue)}
+  .crumbbar .here{color:var(--text)}
+  .crumbbar .docno{margin-left:auto;color:var(--text-2)}
+
+  /* ---------- shell ---------- */
+  .shell{display:grid;grid-template-columns:minmax(0,1fr) 232px;gap:clamp(28px,4vw,64px);align-items:start}
+  @media (max-width:1080px){.shell{grid-template-columns:1fr}.rail{display:none}}
+
+  /* ---------- toc rail ---------- */
+  .rail{position:sticky;top:24px;padding:28px 0 40px}
+  .rail h2{font-size:12px;font-weight:600;color:var(--text-2);letter-spacing:.08em;margin-bottom:10px;
+           font-family:var(--mono);text-transform:uppercase}
+  .rail ol{list-style:none}
+  .rail a{display:block;padding:7px 0 7px 14px;border-left:2px solid transparent;color:var(--text-2);font-size:13.5px;line-height:1.45}
+  .rail a .no{font-family:var(--mono);font-size:11.5px;color:var(--text-3);margin-right:8px}
+  .rail a:hover{color:var(--text);background:var(--layer)}
+  .rail a.active{border-left-color:var(--blue);color:var(--text);font-weight:600;background:var(--layer)}
+  .rail a.active .no{color:var(--blue)}
+
+  /* ---------- lead space ---------- */
+  .lead{padding:clamp(44px,7vw,84px) 0 clamp(36px,5vw,56px);border-bottom:1px solid var(--border)}
+  .lead h1{font-size:clamp(30px,4.6vw,50px);font-weight:700;line-height:1.35;letter-spacing:-0.015em;max-width:15em}
+  .lead h1 .hl{color:var(--blue)}
+  .lead p{margin-top:22px;max-width:46em;color:var(--text-2);font-size:16px}
+  .lead p b{color:var(--text);font-weight:600}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:1px;background:var(--border);
+        border:1px solid var(--border);margin-top:40px}
+  .kpi{background:var(--layer);padding:18px 20px 16px}
+  .kpi .n{font-size:34px;line-height:1.35;font-weight:700;letter-spacing:-0.01em;font-variant-numeric:tabular-nums;color:var(--text)}
+  .kpi .n small{font-size:15px;font-weight:500;color:var(--text-2);margin-left:2px}
+  .kpi .l{font-size:12.5px;color:var(--text-2);margin-top:4px}
 
   /* ---------- sections ---------- */
-  section{padding:64px 0;border-bottom:1px solid var(--line)}
-  .sec-head{display:flex;align-items:baseline;gap:16px;margin-bottom:34px}
-  .sec-head .idx{font-family:var(--mono);font-size:13px;color:var(--amber);letter-spacing:.2em}
-  .sec-head h2{font-family:var(--serif);font-weight:900;font-size:clamp(22px,3.4vw,32px);letter-spacing:.02em}
-  .sec-head .leader{flex:1;border-bottom:1px dotted var(--line-2);transform:translateY(-8px)}
-  h3{font-family:var(--mono);font-size:12px;font-weight:700;letter-spacing:.24em;text-transform:uppercase;
-     color:var(--amber);margin:30px 0 14px}
-  p.note{color:var(--dim);max-width:52em;margin-bottom:18px}
-  p.note b, td b{color:var(--ink)}
-  code{font-family:var(--mono);font-size:.9em;color:var(--green);background:rgba(94,255,139,.07);
-       padding:1px 6px;border-radius:4px;border:1px solid rgba(94,255,139,.14)}
+  section{padding:clamp(40px,6vw,64px) 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:26px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+  .sec-head .no{font-family:var(--mono);font-size:13px;color:var(--blue);font-weight:500;white-space:nowrap}
+  .sec-head h2{font-size:clamp(21px,2.8vw,27px);font-weight:700;letter-spacing:-0.01em}
+  h3{font-size:17px;font-weight:600;margin:30px 0 12px}
+  h3 .h3-cap{font-family:var(--mono);font-size:11.5px;color:var(--text-2);margin-right:10px;font-weight:500}
+  p.note{color:var(--text-2);max-width:52em;margin:0 0 16px}
+  p.note b,td b{color:var(--text);font-weight:600}
+  code{font-family:var(--mono);font-size:.88em;color:var(--text);background:var(--layer);
+       padding:1px 6px;border:1px solid var(--border)}
 
-  .tbl-scroll{overflow-x:auto;margin:8px 0 6px}
-  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px}
-  thead th{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
-           color:var(--amber);text-align:left;padding:10px 12px;border-bottom:1px solid var(--line-2);white-space:nowrap}
-  td{padding:11px 12px;border-bottom:1px solid var(--line);color:var(--dim);vertical-align:top}
-  td:first-child{color:var(--ink);white-space:nowrap}
-  tbody tr:hover{background:rgba(255,180,84,.045)}
-  tbody tr.you{background:rgba(94,255,139,.05)}
-  tbody tr.you td:first-child{color:var(--green)}
+  /* ---------- tables (Carbon data-table grammar) ---------- */
+  .tbl-scroll{overflow-x:auto;margin:6px 0 8px}
+  table{width:100%;border-collapse:collapse;font-size:13.5px;min-width:640px;background:var(--bg)}
+  thead th{background:var(--layer);font-size:12px;font-weight:600;color:var(--text-2);text-align:left;
+           padding:10px 14px;border-bottom:1px solid var(--border-strong);white-space:nowrap}
+  td{padding:11px 14px;border-bottom:1px solid var(--border);color:var(--text-2);vertical-align:top}
+  tbody tr:last-child td{border-bottom:none}
+  tbody tr:hover{background:var(--layer)}
+  td:first-child{color:var(--text);font-weight:500;white-space:nowrap}
+  td .num,th.num{font-variant-numeric:tabular-nums}
+  tr.you td{background:var(--blue-tint)}
+  tr.you td:first-child{color:var(--blue-tag);font-weight:600}
 
-  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px}
-  .card{background:linear-gradient(180deg,var(--panel),var(--bg-2));border:1px solid var(--line);border-radius:8px;padding:20px 22px}
-  .card .no{font-family:var(--mono);color:var(--faint);font-size:11px;letter-spacing:.2em}
-  .card h4{font-family:var(--serif);font-weight:900;font-size:17px;margin:8px 0 8px}
-  .card p{color:var(--dim);font-size:13.5px}
+  /* ---------- quadrant map ---------- */
+  .map{position:relative;aspect-ratio:16/8.4;border:1px solid var(--border);margin:10px 0 8px;background:var(--bg);
+       background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+       background-size:52px 52px}
+  .map .mid-x{position:absolute;left:0;right:0;top:50%;border-top:1px dashed var(--border-strong)}
+  .map .mid-y{position:absolute;top:0;bottom:0;left:50%;border-left:1px dashed var(--border-strong)}
+  .map .axis{position:absolute;font-family:var(--mono);font-size:11px;color:var(--text-2);letter-spacing:.06em;background:var(--bg);padding:0 6px}
+  .ax-x1{left:10px;bottom:-9px}.ax-x2{right:10px;bottom:-9px;text-align:right}
+  .ax-y1{top:8px;left:10px}.ax-y2{bottom:26px;right:10px}
+  .chip{line-height:1.5;position:absolute;transform:translate(-50%,-50%);font-size:12px;color:var(--text);
+        border:1px solid var(--border-strong);background:var(--bg);padding:4px 10px;white-space:nowrap}
+  .chip small{color:var(--text-2);font-weight:400}
+  .chip.you{background:var(--blue);border-color:var(--blue);color:#ffffff;font-weight:600;box-shadow:0 2px 6px rgba(22,22,22,.25)}
+  .chip.you small{color:#ffffff}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:12.5px;color:var(--text-2);margin:10px 0 4px}
+  .legend i{display:inline-block;width:12px;height:12px;margin-right:6px;vertical-align:-1px;border:1px solid var(--border-strong);background:var(--bg)}
+  .legend i.you{background:var(--blue);border-color:var(--blue)}
 
-  /* ---------- 2x2 map ---------- */
-  .map{position:relative;aspect-ratio:16/8.2;background:linear-gradient(180deg,rgba(16,22,35,.7),rgba(14,19,27,.7));
-       border:1px solid var(--line-2);border-radius:10px;margin:14px 0 6px;
-       background-image:
-         linear-gradient(rgba(139,147,163,.12) 1px,transparent 1px),
-         linear-gradient(90deg,rgba(139,147,163,.12) 1px,transparent 1px),
-         radial-gradient(420px 240px at 84% 16%, rgba(255,180,84,.10), transparent 65%);
-       background-size:52px 52px,52px 52px,100% 100%}
-  .map .axis{position:absolute;font-family:var(--mono);font-size:10.5px;letter-spacing:.2em;color:var(--faint);text-transform:uppercase}
-  .map .ax-x1{left:16px;bottom:10px}.map .ax-x2{right:16px;bottom:10px}
-  .map .ax-y1{top:12px;left:16px}.map .ax-y2{bottom:34px;right:16px}
-  .chip{position:absolute;transform:translate(-50%,-50%);font-family:var(--mono);font-size:11.5px;
-        color:var(--dim);border:1px solid var(--line-2);background:rgba(10,13,19,.85);
-        padding:5px 10px;border-radius:99px;white-space:nowrap}
-  .chip small{color:var(--faint)}
-  .chip.you{color:#0a0d13;background:var(--amber);border-color:var(--amber);font-weight:700;
-            box-shadow:0 0 0 6px rgba(255,180,84,.12),0 0 34px rgba(255,180,84,.35);animation:pulse 2.6s infinite}
-  .chip.you small{color:rgba(10,13,19,.65)}
-  @keyframes pulse{0%,100%{box-shadow:0 0 0 6px rgba(255,180,84,.12),0 0 34px rgba(255,180,84,.3)}
-                   50%{box-shadow:0 0 0 10px rgba(255,180,84,.06),0 0 46px rgba(255,180,84,.45)}}
-
-  /* ---------- messaging house ---------- */
-  .house{border:1px solid var(--line-2);border-radius:10px;overflow:hidden;margin-top:6px}
-  .roof{background:linear-gradient(180deg,rgba(255,180,84,.14),rgba(255,180,84,.04));
-        border-bottom:1px solid var(--line-2);padding:26px 28px;text-align:center}
-  .roof .k{font-family:var(--mono);font-size:10.5px;letter-spacing:.24em;color:var(--amber);text-transform:uppercase}
-  .roof p{font-family:var(--serif);font-weight:900;font-size:clamp(18px,2.6vw,25px);margin-top:8px}
-  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-  .pillar{padding:22px;border-right:1px solid var(--line)}
+  /* ---------- pillars ---------- */
+  .pillars{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));border:1px solid var(--border);margin-top:14px}
+  .pillar{padding:20px 22px;border-right:1px solid var(--border);background:var(--bg)}
   .pillar:last-child{border-right:none}
-  .pillar .t{font-family:var(--mono);font-size:12px;color:var(--green);letter-spacing:.14em;margin-bottom:8px}
-  .pillar p{color:var(--dim);font-size:13.5px}
+  .pillar .t{font-size:15px;font-weight:600;margin-bottom:6px}
+  .pillar .t::before{content:"";display:block;width:28px;height:3px;background:var(--blue);margin-bottom:12px}
+  .pillar p{color:var(--text-2);font-size:13.5px}
+  .roof{background:var(--layer);border:1px solid var(--border);border-bottom:none;padding:26px 28px}
+  .roof p{font-size:clamp(17px,2.4vw,22px);font-weight:600;line-height:1.55;max-width:38em}
+  .roof p .hl{color:var(--blue)}
 
-  /* ---------- timeline ---------- */
-  .timeline{position:relative;margin-top:10px;padding-left:30px}
-  .timeline::before{content:"";position:absolute;left:8px;top:6px;bottom:6px;width:2px;
-                    background:linear-gradient(180deg,var(--amber),rgba(255,180,84,.08))}
-  .phase{position:relative;padding:2px 0 34px}
-  .phase::before{content:"";position:absolute;left:-27px;top:10px;width:12px;height:12px;border-radius:50%;
-                 background:var(--bg);border:2px solid var(--amber);box-shadow:0 0 12px rgba(255,180,84,.4)}
-  .phase .ph-tag{display:inline-block;font-family:var(--mono);font-size:11px;font-weight:700;letter-spacing:.2em;
-                 color:var(--amber);border:1px solid var(--amber-dim);border-radius:3px;padding:3px 10px;text-transform:uppercase}
-  .phase h4{font-family:var(--serif);font-weight:900;font-size:20px;margin:10px 0 6px}
-  .phase ul{list-style:none;color:var(--dim);font-size:13.5px}
-  .phase ul li{padding-left:18px;position:relative;margin:5px 0}
-  .phase ul li::before{content:"▸";position:absolute;left:0;color:var(--amber)}
-  .phase .exit{margin-top:10px;font-family:var(--mono);font-size:12px;color:var(--green)}
-  .phase .exit::before{content:"✓ 出口判据 · ";color:var(--faint);letter-spacing:.14em}
+  /* ---------- phase timeline (progress indicator) ---------- */
+  .timeline{margin-top:10px}
+  .phase{display:grid;grid-template-columns:34px 1fr;gap:0 18px;position:relative}
+  .phase .node{display:flex;flex-direction:column;align-items:center}
+  .phase .dot{width:30px;height:30px;border-radius:50%;border:2px solid var(--blue);background:var(--bg);
+              color:var(--blue);font-family:var(--mono);font-size:12.5px;font-weight:600;
+              display:flex;align-items:center;justify-content:center;flex:none}
+  .phase .stem{flex:1;width:2px;background:var(--border);margin:6px 0}
+  .phase:last-child .stem{display:none}
+  .phase .body{padding-bottom:36px}
+  .phase h3{font-size:18px;margin:0;font-weight:600;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+  .phase ul{list-style:none;color:var(--text-2);font-size:13.5px;margin-top:10px}
+  .phase ul li{padding-left:16px;position:relative;margin:5px 0}
+  .phase ul li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:2px;background:var(--text-2)}
+  .phase .exit{margin-top:12px;font-size:13px;color:var(--text);display:flex;align-items:center;gap:8px}
+  .phase .exit svg{flex:none}
 
   /* ---------- funnel ---------- */
-  .funnel{display:grid;gap:9px;margin-top:10px}
-  .fstep{display:grid;grid-template-columns:210px 1fr 88px;gap:14px;align-items:center}
-  .fstep .fl{font-family:var(--mono);font-size:12px;color:var(--dim);text-align:right;white-space:nowrap}
-  .fstep .bar{height:26px;border-radius:4px;background:linear-gradient(90deg,rgba(255,180,84,.75),rgba(255,180,84,.25));
-              border:1px solid rgba(255,180,84,.35);min-width:4px}
-  .fstep:last-of-type .bar{background:linear-gradient(90deg,rgba(94,255,139,.75),rgba(94,255,139,.25));border-color:rgba(94,255,139,.4)}
-  .fstep .fv{font-family:var(--mono);font-size:12px;color:var(--amber)}
-  .fstep:last-of-type .fv{color:var(--green)}
+  .funnel{display:grid;gap:8px;margin-top:10px}
+  .fstep{display:grid;grid-template-columns:190px 1fr 92px;gap:14px;align-items:center}
+  .fstep .fl{font-size:12.5px;color:var(--text-2);text-align:right;white-space:nowrap}
+  .fstep .bar{height:22px;background:var(--blue);min-width:3px}
+  .fstep.last .bar{background:var(--green)}
+  .fstep .fv{font-family:var(--mono);font-size:12px;color:var(--text);font-variant-numeric:tabular-nums}
 
-  .grid2{display:grid;grid-template-columns:1.15fr .85fr;gap:34px;align-items:start}
+  .grid2{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(24px,3.5vw,48px);align-items:start}
   @media (max-width:860px){.grid2{grid-template-columns:1fr}}
 
-  .lvl{font-family:var(--mono);font-size:11px;font-weight:700;border-radius:3px;padding:2px 9px;letter-spacing:.1em}
-  .lvl.hi{color:var(--red);border:1px solid rgba(255,107,107,.5)}
-  .lvl.mid{color:var(--amber);border:1px solid rgba(255,180,84,.5)}
-  .ok{color:var(--green)} .warn{color:var(--amber)}
+  /* ---------- notification (Carbon inline) ---------- */
+  .note-box{position:relative;background:var(--blue-tint);padding:13px 16px 13px 21px;margin:14px 0;font-size:13.5px;color:var(--text)}
+  .note-box::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--blue)}
+  .note-box.red{background:#fff1f1}.note-box.red::before{background:var(--red-tag)}
 
   /* ---------- footer ---------- */
-  footer{padding:44px 0 70px;color:var(--faint);font-size:12.5px}
-  footer .src{margin-top:10px;line-height:2}
-  footer a{color:var(--dim)}
-  footer a:hover{color:var(--amber)}
-  .sig{font-family:var(--mono);font-size:11px;letter-spacing:.2em;margin-top:26px;text-transform:uppercase}
+  footer{background:#161616;color:#c6c6c6;margin-top:0}
+  footer .wrap{padding:44px clamp(16px,4vw,40px) 60px}
+  footer .f-title{font-size:14px;font-weight:600;color:#f4f4f4;margin-bottom:14px}
+  footer p{font-size:13px;max-width:60em}
+  footer .src{margin-top:14px;line-height:2;font-size:12.5px}
+  footer a{color:var(--blue-40)}
+  footer a:hover{color:#ffffff}
+  footer .sig{font-family:var(--mono);font-size:11.5px;letter-spacing:.14em;margin-top:30px;color:#a8a8a8;text-transform:uppercase}
 
-  /* ---------- motion ---------- */
-  .rise{opacity:0;transform:translateY(18px)}
-  @supports (animation-timeline: view()){
-    .rise{animation:rise .8s linear both;animation-timeline:view();animation-range:entry 0% entry 42%}
-  }
-  @keyframes rise{to{opacity:1;transform:none}}
-  .hero .rise{animation:rise .7s ease-out both}
-  .hero .rise:nth-child(2){animation-delay:.12s}
-  .hero .rise:nth-child(3){animation-delay:.24s}
-  .kpis.rise{animation-delay:.36s}
-  @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}.rise{opacity:1;transform:none}}
+  /* ---------- motion: one authored reveal ---------- */
+  .rise{opacity:0;transform:translateY(14px)}
+  .in-view{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
+  .lead > *{animation:heroIn .55s var(--ease) both}
+  .lead > *:nth-child(2){animation-delay:.1s}
+  .lead > *:nth-child(3){animation-delay:.2s}
+  .lead .kpis{animation-delay:.3s}
+  @keyframes heroIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.rise{opacity:1;transform:none}}
 
   @media print{
-    body{background:#fff;color:#111}
-    body::after,header{display:none}
-    .kpi,.card,.map,.house,.roof{background:#fff;border-color:#bbb}
-    td{color:#333}
-    .chip{color:#111}
+    .masthead,.rail,.crumbbar{display:none}
+    body{font-size:12px}
+    .shell{grid-template-columns:1fr}
+    section{border:none;padding:18px 0}
+    a{color:#0f62fe}
   }
   @media (max-width:640px){
-    .fstep{grid-template-columns:120px 1fr 64px}
-    .fstep .fl{font-size:10.5px}
-    .stamp{margin-left:0}
+    .crumbbar .docno{display:none}
+    .fstep{grid-template-columns:110px 1fr 64px}
+    .fstep .fl{font-size:11px}
+    .mast-meta{display:none}
   }
 </style>
 </head>
 <body>
 
-<header>
+<header class="masthead">
   <div class="wrap">
-    <div class="mast">
-      <div class="brand">DEEP<em>DIG</em> <span style="color:var(--dim);font-weight:600;font-size:14px">深掘</span></div>
-      <div class="meta">GTM STRATEGY BRIEF · ai-guru-global · 2026 Q4</div>
-      <div class="stamp">作战简报 · GTM-2610</div>
-    </div>
-    <nav class="crumbs">
-      <a href="#s1">01 定位</a><a href="#s2">02 时机</a><a href="#s3">03 竞争格局</a><a href="#s4">04 目标用户</a>
-      <a href="#s6">05 渠道</a><a href="#s7">06 90 天计划</a><a href="#s8">07 增长模型</a>
-      <a href="#s9">08 社区与商业化</a><a href="#s10">09 风险登记册</a>
-    </nav>
+    <div class="brand"><b>DEEPDIG</b><span>深掘</span><span class="sep"></span><span>GTM 策略简报</span></div>
+    <div class="mast-meta"><span>AI-GURU-GLOBAL</span><span>2026 Q4</span><span class="tag blue">GTM-2610</span></div>
   </div>
 </header>
 
-<div class="wrap">
-
-  <!-- ============ HERO ============ -->
-  <div class="hero">
-    <div class="tag rise">Multi-Engine Fact-Checking · MCP · Open Source</div>
-    <h1 class="rise">给 AI 三个引擎，<br>让事实<span class="hl">彼此印证</span>。</h1>
-    <p class="lead rise">DeepDig 不是又一款搜索 API，而是检索分层中缺位的<b>多源仲裁层</b>：
-    一次查询并发调度 Qwen、GLM、Kimi 三家原生联网检索，输出去重、交叉验证、信源可溯的 Markdown——
-    <b>8 秒熔断，单点不倒，中文原生，BYOK 零锁定</b>。本简报定义它的市场进入路径。</p>
-    <div class="kpis rise">
-      <div class="kpi"><div class="n">500<small> 次/周</small></div><div class="l">北极星 · 周深掘检索数 (90d)</div></div>
-      <div class="kpi"><div class="n">2,000</div><div class="l">GitHub Stars (90d)</div></div>
-      <div class="kpi"><div class="n">5<small> 个市场</small></div><div class="l">MCP 目录收录</div></div>
-      <div class="kpi"><div class="n">3<small> 家</small></div><div class="l">企业试点 (D90)</div></div>
-    </div>
+<div class="crumbbar">
+  <div class="wrap">
+    <a href="https://github.com/ai-guru-global">ai-guru-global</a><span>/</span>
+    <a href="https://github.com/ai-guru-global/deepdig">deepdig</a><span>/</span>
+    <span class="here">gtm</span>
+    <span class="docno">更新 2026-10-27 · v1.1</span>
   </div>
+</div>
 
-  <!-- ============ 01 定位 ============ -->
-  <section id="s1" class="rise">
-    <div class="sec-head"><span class="idx">01 /</span><h2>定位声明</h2><span class="leader"></span></div>
-    <div class="house">
+<div class="wrap shell" style="padding-top:0">
+
+  <main style="min-width:0">
+
+    <!-- ============ lead space ============ -->
+    <div class="lead" style="border-bottom:none;padding-bottom:clamp(28px,4vw,44px)">
+      <h1>给 AI 三个引擎，<br>让事实<span class="hl">彼此印证</span>。</h1>
+      <p>DeepDig 不是又一款搜索 API，而是检索分层中缺位的<b>多源仲裁层</b>：
+      一次查询并发调度 Qwen、GLM、Kimi 三家原生联网检索，输出去重、交叉验证、信源可溯的 Markdown——
+      <b>8 秒熔断，单点不倒，中文原生，BYOK 零锁定</b>。本简报定义它的市场进入路径。</p>
+      <div class="kpis">
+        <div class="kpi"><div class="n">500<small>次/周</small></div><div class="l">北极星 · 周深掘检索数（90 天）</div></div>
+        <div class="kpi"><div class="n">2,000</div><div class="l">GitHub Stars（90 天）</div></div>
+        <div class="kpi"><div class="n">5<small>个市场</small></div><div class="l">MCP 目录收录</div></div>
+        <div class="kpi"><div class="n">3<small>家</small></div><div class="l">企业试点（D90）</div></div>
+      </div>
+    </div>
+
+    <!-- ============ 01 定位 ============ -->
+    <section id="s1">
+      <div class="sec-head"><span class="no">01</span><h2>定位声明</h2></div>
       <div class="roof">
-        <div class="k">Positioning Statement</div>
-        <p>对于需要可信实时信息的 AI IDE 用户与 Agent 开发者，<br>
-        DeepDig 是多源交叉检索与事实核查的 MCP 服务器——<br>
-        它不像搜索 API 返回“结果列表”，而是仲裁“<span style="color:var(--amber)">哪些信息彼此印证、哪些存在冲突</span>”。</p>
+        <p>对于需要可信实时信息的 AI IDE 用户与 Agent 开发者，DeepDig 是多源交叉检索与事实核查的 MCP 服务器——它不像搜索 API 返回“结果列表”，而是仲裁“<span class="hl">哪些信息彼此印证、哪些存在冲突</span>”。</p>
       </div>
       <div class="pillars">
         <div class="pillar"><div class="t">支柱 A · 抗幻觉</div>
@@ -249,240 +254,290 @@
         <div class="pillar"><div class="t">支柱 C · 零锁定</div>
           <p>MIT 开源 + BYOK：Key 在用户手里，无中间商加价、无遥测；entry-point 插件可接任意检索源。</p></div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ 02 时机 ============ -->
-  <section id="s2" class="rise">
-    <div class="sec-head"><span class="idx">02 /</span><h2>市场时机 · Why Now</h2><span class="leader"></span></div>
-    <div class="cards">
-      <div class="card"><div class="no">WINDOW-1</div><h4>Agent 检索成为高频原语</h4>
-        <p>2026 年 MCP 已是 IDE 与 Agent 的标配协议，联网检索是其中调用频次最高的工具之一；
-        主流 MCP 目录（Smithery / PulseMCP / glama / mcp.so / 魔搭）流量快速集中，分发窗口正开着。</p></div>
-      <div class="card"><div class="no">WINDOW-2</div><h4>信任赤字倒逼可溯源</h4>
-        <p>单源检索的幻觉、死链与过时信息已成为 Agent 落地的头号投诉；行业选型共识已把
-        “信源标注 + 交叉验证”列为硬指标——这正是 DeepDig 的产品内核。</p></div>
-      <div class="card"><div class="no">WINDOW-3</div><h4>中文供给断层</h4>
-        <p>海外检索 API 中文表现一般且需出境；国内官方 MCP 均为单引擎锁定。多源仲裁 +
-        中文原生 + 开源自托管的组合位，目前无人占住。</p></div>
-    </div>
-  </section>
-
-  <!-- ============ 03 竞争格局 ============ -->
-  <section id="s3" class="rise">
-    <div class="sec-head"><span class="idx">03 /</span><h2>竞争格局 · 检索分层地图</h2><span class="leader"></span></div>
-    <p class="note">横轴：<b>单源 → 多源仲裁</b>；纵轴：<b>工具/基建层 → 认知/综合层</b>。右上象限是空位。</p>
-    <div class="map">
-      <span class="axis ax-y1">认知 / 综合层 ↑</span>
-      <span class="axis ax-y2">工具 / 基建层 ↓</span>
-      <span class="axis ax-x1">← 单源</span>
-      <span class="axis ax-x2">多源仲裁 →</span>
-      <span class="chip" style="left:30%;top:24%">官方单引擎 MCP <small>百炼/智谱/千帆</small></span>
-      <span class="chip" style="left:16%;top:62%">Firecrawl <small>爬取基建</small></span>
-      <span class="chip" style="left:38%;top:55%">Tavily <small>通用检索</small></span>
-      <span class="chip" style="left:26%;top:80%">SearXNG / DDG <small>免费聚合</small></span>
-      <span class="chip" style="left:52%;top:70%">Exa <small>语义/学术</small></span>
-      <span class="chip" style="left:62%;top:44%">Brave <small>独立索引</small></span>
-      <span class="chip" style="left:46%;top:38%">AnySearch <small>国内垂类</small></span>
-      <span class="chip you" style="left:84%;top:18%">DEEPDIG <small>多源仲裁</small></span>
-    </div>
-    <div class="tbl-scroll">
-      <table>
-        <thead><tr><th>玩家</th><th>层级</th><th>多源仲裁</th><th>中文</th><th>计费</th><th>对我方启示</th></tr></thead>
-        <tbody>
-          <tr class="you"><td>DeepDig</td><td>认知/仲裁层</td><td class="ok">✅ 内建</td><td class="ok">✅ 原生</td><td>自付 API，零加价</td><td>—</td></tr>
-          <tr><td>Tavily</td><td>通用检索 API</td><td>❌</td><td>一般</td><td>信用点订阅</td><td>可作 DeepDig 插件源，是互补非对手</td></tr>
-          <tr><td>Firecrawl</td><td>爬取基建</td><td>❌</td><td>一般</td><td>按额度</td><td>分层不同，联合叙事：抓取交给它</td></tr>
-          <tr><td>Exa / Brave</td><td>语义/索引</td><td>❌</td><td>一般</td><td>按量</td><td>同上，插件化纳入</td></tr>
-          <tr><td>AnySearch</td><td>国内垂直基建</td><td>❌</td><td class="ok">✅</td><td>免费额度+按量</td><td>垂类索引强但闭源 SaaS；我方主打开放+仲裁</td></tr>
-          <tr><td>官方单引擎 MCP</td><td>单引擎包装</td><td>❌</td><td class="ok">✅</td><td>按量（29 元/千次档）</td><td>最大竞压来源：若升级多源，我方靠中立聚合+自托管守住</td></tr>
-          <tr><td>SearXNG / wigolo</td><td>免费 SERP 聚合</td><td>⚠️ 多源无仲裁</td><td>一般</td><td>免费</td><td>价格敏感用户分流；我方卖可信度不卖低价</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
-
-  <!-- ============ 04 目标用户 ============ -->
-  <section id="s4" class="rise">
-    <div class="sec-head"><span class="idx">04 /</span><h2>目标用户 · 三层 ICP</h2><span class="leader"></span></div>
-    <div class="tbl-scroll">
-      <table>
-        <thead><tr><th>分层</th><th>画像</th><th>痛点</th><th>触发场景</th><th>转化路径</th><th>主渠道</th></tr></thead>
-        <tbody>
-          <tr><td>ICP-1<br>AI IDE 重度用户</td><td>Qoder / CodeBuddy / Cursor 日活开发者，个人 Key 齐全</td>
-              <td>内置联网检索不准、幻觉多、信源不可溯</td>
-              <td>查 API 变更 / 核对新闻 / 技术调研</td>
-              <td>README 5 分钟接入 → 首次 deepdig 调用</td>
-              <td>掘金 · 知乎 · B 站 · IDE 官方社区</td></tr>
-          <tr><td>ICP-2<br>Agent 框架开发者</td><td>自建 Agent/工作流，需要可信检索原语与工具链集成</td>
-              <td>检索工具同质化，缺交叉验证原语</td>
-              <td>给 Agent 加 fact-check 步骤 / 多源报告</td>
-              <td><code>uvx deepdig</code> → entry-point 写插件</td>
-              <td>GitHub · X · Reddit r/mcp · Show HN</td></tr>
-          <tr><td>ICP-3<br>企业知识团队</td><td>券商/咨询/安全团队，对信源合规与私有化敏感</td>
-              <td>公共 SaaS 不合规；单引擎结果不敢直接引用</td>
-              <td>研报事实核查 / 舆情交叉比对</td>
-              <td>自托管 Gateway → 私有化插件源</td>
-              <td>公众号 · 企业微信生态 · 线下沙龙</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">优先级：<b>ICP-1 起量、ICP-2 建生态、ICP-3 变现</b>。90 天内资源 60/30/10 分配。</p>
-  </section>
-
-  <!-- ============ 06 渠道 ============ -->
-  <section id="s6" class="rise" style="border-top:none;padding-top:64px">
-    <div class="sec-head"><span class="idx">05 /</span><h2>渠道矩阵 · 双线打法</h2><span class="leader"></span></div>
-    <div class="tbl-scroll">
-      <table>
-        <thead><tr><th>战线</th><th>渠道</th><th>动作</th><th>衡量指标</th></tr></thead>
-        <tbody>
-          <tr><td rowspan="4">海外线<br>（生态位曝光）</td><td>GitHub 本体</td><td>全绿徽章 + 竞品对比表 + 动图演示；topics: mcp / fact-checking / web-search</td><td>Star 转化率、Star 增速</td></tr>
-          <tr><td>MCP 目录五连</td><td>Smithery / PulseMCP / glama.ai / mcp.so / 魔搭 MCP 广场收录与维护</td><td>目录带来的安装占比</td></tr>
-          <tr><td>Reddit + HN</td><td>r/mcp、r/LocalLLaMA 经验帖；Show HN 首发 benchmark 报告</td><td>referral 安装、讨论热度</td></tr>
-          <tr><td>X / Build in Public</td><td>双周进度贴：熔断曲线、交叉验证案例</td><td>粉丝与外链</td></tr>
-          <tr><td rowspan="4">中文线<br>（基本盘）</td><td>掘金 / 知乎专栏</td><td>“检索分层选型”系列：对比长文 × 架构解析 × IDE 接入实战</td><td>读赞藏 → README 访问</td></tr>
-          <tr><td>B 站演示</td><td>3 分钟实机：同一问题单引擎幻觉 vs DeepDig 三源印证</td><td>播放→转化</td></tr>
-          <tr><td>V2EX / 即刻</td><td>分享创造节点首发帖，回复运维 48h</td><td>帖子热度</td></tr>
-          <tr><td>公众号 + 少数派</td><td>深度长文沉淀 + 企业场景案例（配合 ICP-3）</td><td>留资 / 试点线索</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p class="note">内容母题只有一条：<b>“别问 AI 搜到了什么，问哪些信息彼此印证。”</b>所有渠道复用同一叙事与同一份 benchmark 数据。</p>
-  </section>
-
-  <!-- ============ 07 90 天计划 ============ -->
-  <section id="s7" class="rise">
-    <div class="sec-head"><span class="idx">06 /</span><h2>90 天作战计划</h2><span class="leader"></span></div>
-    <div class="timeline">
-      <div class="phase">
-        <span class="ph-tag">PHASE 1 · D0–30</span>
-        <h4>打地基 · 让项目“被找到”</h4>
-        <ul>
-          <li>发布 v0.1.x 至 PyPI，打通 <code>uvx deepdig</code> 一行接入</li>
-          <li>提交五大 MCP 目录收录；README 徽章/对比表/演示动图上线</li>
-          <li>发布 3 篇内容：检索分层选型长文 / 架构原理 / IDE 接入实战</li>
-          <li>打标 10 个 good first issue，启动双周 release 节奏</li>
-        </ul>
-        <div class="exit">300 stars · 五目录在架 · 首个外部 PR</div>
+    <!-- ============ 02 时机 ============ -->
+    <section id="s2">
+      <div class="sec-head"><span class="no">02</span><h2>市场时机 · Why Now</h2></div>
+      <div class="pillars" style="grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <div class="pillar"><div class="t">窗口 1 · Agent 检索成为高频原语</div>
+          <p>2026 年 MCP 已是 IDE 与 Agent 的标配协议，联网检索是其中调用频次最高的工具之一；主流 MCP 目录（Smithery / PulseMCP / glama / mcp.so / 魔搭）流量快速集中，分发窗口正开着。</p></div>
+        <div class="pillar"><div class="t">窗口 2 · 信任赤字倒逼可溯源</div>
+          <p>单源检索的幻觉、死链与过时信息已成为 Agent 落地的头号投诉；行业选型共识已把“信源标注 + 交叉验证”列为硬指标——这正是 DeepDig 的产品内核。</p></div>
+        <div class="pillar"><div class="t">窗口 3 · 中文供给断层</div>
+          <p>海外检索 API 中文表现一般且需出境；国内官方 MCP 均为单引擎锁定。多源仲裁 + 中文原生 + 开源自托管的组合位，目前无人占住。</p></div>
       </div>
-      <div class="phase">
-        <span class="ph-tag">PHASE 2 · D31–60</span>
-        <h4>造声量 · 用数据说话</h4>
-        <ul>
-          <li>发布首份公开 Benchmark 报告（信源覆盖 +40~70% 目标实测）</li>
-          <li>落地 2 个示范插件（Tavily / Brave 作为补充源），验证插件叙事</li>
-          <li>B 站对比视频 + Show HN + V2EX 首发，集中投放</li>
-          <li>上线深掘案例库：每次“单源翻车 vs 三源印证”皆可引用</li>
-        </ul>
-        <div class="exit">1,000 stars · 周检索 200 次 · 1 篇外部测评</div>
-      </div>
-      <div class="phase">
-        <span class="ph-tag">PHASE 3 · D61–90</span>
-        <h4>立生态 · 从工具到标准</h4>
-        <ul>
-          <li>v0.2：Gateway Docker 一键部署 + 用量面板</li>
-          <li>签约 2–3 家企业试点（研报核查 / 舆情比对场景）</li>
-          <li>联合中文 MCP 市场做收录活动；插件作者激励计划</li>
-          <li>启动托管 Gateway 内测（open core 第二层）</li>
-        </ul>
-        <div class="exit">2,000 stars · 周检索 500 次 · 3 个社区插件 · 3 家试点</div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ 08 增长模型 ============ -->
-  <section id="s8" class="rise">
-    <div class="sec-head"><span class="idx">07 /</span><h2>增长漏斗与指标体系</h2><span class="leader"></span></div>
-    <div class="grid2">
-      <div>
-        <h3>获客漏斗（目标转化率）</h3>
-        <div class="funnel">
-          <div class="fstep"><span class="fl">README / 目录曝光</span><div class="bar" style="width:100%"></div><span class="fv">100%</span></div>
-          <div class="fstep"><span class="fl">Star</span><div class="bar" style="width:8%"></div><span class="fv">8%</span></div>
-          <div class="fstep"><span class="fl">安装 (uvx / pip)</span><div class="bar" style="width:2.4%"></div><span class="fv">star→30%</span></div>
-          <div class="fstep"><span class="fl">首次检索成功（激活）</span><div class="bar" style="width:1.4%"></div><span class="fv">装→60%</span></div>
-          <div class="fstep"><span class="fl">周活检索（北极星）</span><div class="bar" style="width:0.9%"></div><span class="fv">留→65%</span></div>
+    <!-- ============ 03 竞争格局 ============ -->
+    <section id="s3">
+      <div class="sec-head"><span class="no">03</span><h2>竞争格局 · 检索分层地图</h2></div>
+      <p class="note">横轴：<b>单源 → 多源仲裁</b>；纵轴：<b>工具/基建层 → 认知/综合层</b>。右上象限是空位。</p>
+      <div class="map" role="img" aria-label="检索分层四象限图：DeepDig 位于多源仲裁与认知综合层的右上象限">
+        <span class="axis ax-y1">认知 / 综合层 ↑</span>
+        <span class="axis ax-y2">工具 / 基建层 ↓</span>
+        <span class="axis ax-x1">← 单源</span>
+        <span class="axis ax-x2">多源仲裁 →</span>
+        <div class="mid-x"></div><div class="mid-y"></div>
+        <span class="chip" style="left:30%;top:24%">官方单引擎 MCP <small>百炼/智谱/千帆</small></span>
+        <span class="chip" style="left:16%;top:62%">Firecrawl <small>爬取基建</small></span>
+        <span class="chip" style="left:38%;top:55%">Tavily <small>通用检索</small></span>
+        <span class="chip" style="left:26%;top:80%">SearXNG / DDG <small>免费聚合</small></span>
+        <span class="chip" style="left:52%;top:70%">Exa <small>语义/学术</small></span>
+        <span class="chip" style="left:62%;top:44%">Brave <small>独立索引</small></span>
+        <span class="chip" style="left:46%;top:38%">AnySearch <small>国内垂类</small></span>
+        <span class="chip you" style="left:84%;top:18%">DEEPDIG <small>多源仲裁</small></span>
+      </div>
+      <div class="legend"><span><i class="you"></i>DeepDig（目标生态位）</span><span><i></i>既有玩家</span></div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>玩家</th><th>层级</th><th>多源仲裁</th><th>中文</th><th>计费</th><th>对我方启示</th></tr></thead>
+          <tbody>
+            <tr class="you"><td>DeepDig</td><td>认知/仲裁层</td><td class="ok" style="color:var(--green-tag)">✅ 内建</td><td style="color:var(--green-tag)">✅ 原生</td><td>自付 API，零加价</td><td>—</td></tr>
+            <tr><td>Tavily</td><td>通用检索 API</td><td>❌</td><td>一般</td><td>信用点订阅</td><td>可作 DeepDig 插件源，是互补非对手</td></tr>
+            <tr><td>Firecrawl</td><td>爬取基建</td><td>❌</td><td>一般</td><td>按额度</td><td>分层不同，联合叙事：抓取交给它</td></tr>
+            <tr><td>Exa / Brave</td><td>语义/索引</td><td>❌</td><td>一般</td><td>按量</td><td>同上，插件化纳入</td></tr>
+            <tr><td>AnySearch</td><td>国内垂直基建</td><td>❌</td><td style="color:var(--green-tag)">✅</td><td>免费额度+按量</td><td>垂类索引强但闭源 SaaS；我方主打开放+仲裁</td></tr>
+            <tr><td>官方单引擎 MCP</td><td>单引擎包装</td><td>❌</td><td style="color:var(--green-tag)">✅</td><td>按量（29 元/千次档）</td><td>最大竞压来源：若升级多源，我方靠中立聚合+自托管守住</td></tr>
+            <tr><td>SearXNG / wigolo</td><td>免费 SERP 聚合</td><td>⚠️ 多源无仲裁</td><td>一般</td><td>免费</td><td>价格敏感用户分流；我方卖可信度不卖低价</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ============ 04 目标用户 ============ -->
+    <section id="s4">
+      <div class="sec-head"><span class="no">04</span><h2>目标用户 · 三层 ICP</h2></div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>分层</th><th>画像</th><th>痛点</th><th>触发场景</th><th>转化路径</th><th>主渠道</th></tr></thead>
+          <tbody>
+            <tr><td>ICP-1<br>AI IDE 重度用户</td><td>Qoder / CodeBuddy / Cursor 日活开发者，个人 Key 齐全</td>
+                <td>内置联网检索不准、幻觉多、信源不可溯</td>
+                <td>查 API 变更 / 核对新闻 / 技术调研</td>
+                <td>README 5 分钟接入 → 首次 deepdig 调用</td>
+                <td>掘金 · 知乎 · B 站 · IDE 官方社区</td></tr>
+            <tr><td>ICP-2<br>Agent 框架开发者</td><td>自建 Agent/工作流，需要可信检索原语与工具链集成</td>
+                <td>检索工具同质化，缺交叉验证原语</td>
+                <td>给 Agent 加 fact-check 步骤 / 多源报告</td>
+                <td><code>uvx deepdig</code> → entry-point 写插件</td>
+                <td>GitHub · X · Reddit r/mcp · Show HN</td></tr>
+            <tr><td>ICP-3<br>企业知识团队</td><td>券商/咨询/安全团队，对信源合规与私有化敏感</td>
+                <td>公共 SaaS 不合规；单引擎结果不敢直接引用</td>
+                <td>研报事实核查 / 舆情交叉比对</td>
+                <td>自托管 Gateway → 私有化插件源</td>
+                <td>公众号 · 企业微信生态 · 线下沙龙</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note" style="margin-top:12px">优先级：<b>ICP-1 起量、ICP-2 建生态、ICP-3 变现</b>。90 天内资源 60/30/10 分配。</p>
+    </section>
+
+    <!-- ============ 05 渠道 ============ -->
+    <section id="s6">
+      <div class="sec-head"><span class="no">05</span><h2>渠道矩阵 · 双线打法</h2></div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>战线</th><th>渠道</th><th>动作</th><th>衡量指标</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="4">海外线<br>（生态位曝光）</td><td>GitHub 本体</td><td>全绿徽章 + 竞品对比表 + 动图演示；topics: mcp / fact-checking / web-search</td><td>Star 转化率、Star 增速</td></tr>
+            <tr><td>MCP 目录五连</td><td>Smithery / PulseMCP / glama.ai / mcp.so / 魔搭 MCP 广场收录与维护</td><td>目录带来的安装占比</td></tr>
+            <tr><td>Reddit + HN</td><td>r/mcp、r/LocalLLaMA 经验帖；Show HN 首发 benchmark 报告</td><td>referral 安装、讨论热度</td></tr>
+            <tr><td>X / Build in Public</td><td>双周进度贴：熔断曲线、交叉验证案例</td><td>粉丝与外链</td></tr>
+            <tr><td rowspan="4">中文线<br>（基本盘）</td><td>掘金 / 知乎专栏</td><td>“检索分层选型”系列：对比长文 × 架构解析 × IDE 接入实战</td><td>读赞藏 → README 访问</td></tr>
+            <tr><td>B 站演示</td><td>3 分钟实机：同一问题单引擎幻觉 vs DeepDig 三源印证</td><td>播放→转化</td></tr>
+            <tr><td>V2EX / 即刻</td><td>分享创造节点首发帖，回复运维 48h</td><td>帖子热度</td></tr>
+            <tr><td>公众号 + 少数派</td><td>深度长文沉淀 + 企业场景案例（配合 ICP-3）</td><td>留资 / 试点线索</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="note-box">内容母题只有一条：<b>“别问 AI 搜到了什么，问哪些信息彼此印证。”</b>所有渠道复用同一叙事与同一份 benchmark 数据。</div>
+    </section>
+
+    <!-- ============ 06 90 天计划 ============ -->
+    <section id="s7">
+      <div class="sec-head"><span class="no">06</span><h2>90 天作战计划</h2></div>
+      <div class="timeline">
+        <div class="phase">
+          <div class="node"><div class="dot">P1</div><div class="stem"></div></div>
+          <div class="body rise">
+            <h3>打地基 · 让项目“被找到” <span class="tag gray">D0–30</span></h4>
+            <ul>
+              <li>发布 v0.1.x 至 PyPI，打通 <code>uvx deepdig</code> 一行接入</li>
+              <li>提交五大 MCP 目录收录；README 徽章/对比表/演示动图上线</li>
+              <li>发布 3 篇内容：检索分层选型长文 / 架构原理 / IDE 接入实战</li>
+              <li>打标 10 个 good first issue，启动双周 release 节奏</li>
+            </ul>
+            <div class="exit"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#24a148" stroke-width="1.5"/><path d="M5 8.2l2 2 4-4.4" stroke="#24a148" stroke-width="1.5" fill="none"/></svg>出口判据：300 stars · 五目录在架 · 首个外部 PR</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="node"><div class="dot">P2</div><div class="stem"></div></div>
+          <div class="body rise">
+            <h3>造声量 · 用数据说话 <span class="tag gray">D31–60</span></h4>
+            <ul>
+              <li>发布首份公开 Benchmark 报告（信源覆盖 +40~70% 目标实测）</li>
+              <li>落地 2 个示范插件（Tavily / Brave 作为补充源），验证插件叙事</li>
+              <li>B 站对比视频 + Show HN + V2EX 首发，集中投放</li>
+              <li>上线深掘案例库：每次“单源翻车 vs 三源印证”皆可引用</li>
+            </ul>
+            <div class="exit"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#24a148" stroke-width="1.5"/><path d="M5 8.2l2 2 4-4.4" stroke="#24a148" stroke-width="1.5" fill="none"/></svg>出口判据：1,000 stars · 周检索 200 次 · 1 篇外部测评</div>
+          </div>
+        </div>
+        <div class="phase">
+          <div class="node"><div class="dot">P3</div></div>
+          <div class="body rise">
+            <h3>立生态 · 从工具到标准 <span class="tag gray">D61–90</span></h4>
+            <ul>
+              <li>v0.2：Gateway Docker 一键部署 + 用量面板</li>
+              <li>签约 2–3 家企业试点（研报核查 / 舆情比对场景）</li>
+              <li>联合中文 MCP 市场做收录活动；插件作者激励计划</li>
+              <li>启动托管 Gateway 内测（open core 第二层）</li>
+            </ul>
+            <div class="exit"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><circle cx="8" cy="8" r="7" stroke="#24a148" stroke-width="1.5"/><path d="M5 8.2l2 2 4-4.4" stroke="#24a148" stroke-width="1.5" fill="none"/></svg>出口判据：2,000 stars · 周检索 500 次 · 3 个社区插件 · 3 家试点</div>
+          </div>
         </div>
       </div>
-      <div>
-        <h3>指标护栏</h3>
-        <div class="tbl-scroll">
-          <table style="min-width:0">
-            <thead><tr><th>指标</th><th>护栏值</th></tr></thead>
-            <tbody>
-              <tr><td>P95 端到端延迟</td><td>≤ 6s（超即查缓存与熔断配置）</td></tr>
-              <tr><td>引擎健康率</td><td>≥ 95%（滑动窗口）</td></tr>
-              <tr><td>信源覆盖度提升</td><td>vs 最强单引擎 ≥ 40%</td></tr>
-              <tr><td>Issue 首响</td><td>≤ 48h</td></tr>
-              <tr><td>Release 节奏</td><td>双周一次，不跳票</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <p class="note">北极星取<b>周深掘检索数</b>而非 Star：Star 是虚荣层，检索行为才证明价值交付。</p>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ 09 社区与商业化 ============ -->
-  <section id="s9" class="rise">
-    <div class="sec-head"><span class="idx">08 /</span><h2>社区运营 & 商业化路线</h2><span class="leader"></span></div>
-    <div class="grid2">
-      <div>
-        <h3>开源社区运营</h3>
-        <div class="cards">
-          <div class="card"><h4>贡献者动线</h4><p>good first issue 打标 → CONTRIBUTING 五分钟上手 → 首个插件进 README 展示位。</p></div>
-          <div class="card"><h4>插件激励</h4><p>Hall of Fame + 发布快讯署名；季度评选“最佳检索源插件”。</p></div>
-          <div class="card"><h4>透明治理</h4><p>路线图公开、双周 changelog、RFC 走 Discussions，安全走私密渠道。</p></div>
+    <!-- ============ 07 增长模型 ============ -->
+    <section id="s8">
+      <div class="sec-head"><span class="no">07</span><h2>增长漏斗与指标体系</h2></div>
+      <div class="grid2">
+        <div>
+          <h3><span class="h3-cap">07.1</span>获客漏斗（目标转化率）</h3>
+          <div class="funnel">
+            <div class="fstep"><span class="fl">README / 目录曝光</span><div class="bar" style="width:100%"></div><span class="fv">100%</span></div>
+            <div class="fstep"><span class="fl">Star</span><div class="bar" style="width:8%"></div><span class="fv">8%</span></div>
+            <div class="fstep"><span class="fl">安装（uvx / pip）</span><div class="bar" style="width:2.4%"></div><span class="fv">star→30%</span></div>
+            <div class="fstep"><span class="fl">首次检索成功（激活）</span><div class="bar" style="width:1.4%"></div><span class="fv">装→60%</span></div>
+            <div class="fstep last"><span class="fl">周活检索（北极星）</span><div class="bar" style="width:0.9%"></div><span class="fv">留→65%</span></div>
+          </div>
+        </div>
+        <div>
+          <h3><span class="h3-cap">07.2</span>指标护栏</h3>
+          <div class="tbl-scroll">
+            <table style="min-width:0">
+              <thead><tr><th>指标</th><th>护栏值</th></tr></thead>
+              <tbody>
+                <tr><td>P95 端到端延迟</td><td>≤ 6s（超即查缓存与熔断配置）</td></tr>
+                <tr><td>引擎健康率</td><td>≥ 95%（滑动窗口）</td></tr>
+                <tr><td>信源覆盖度提升</td><td>vs 最强单引擎 ≥ 40%</td></tr>
+                <tr><td>Issue 首响</td><td>≤ 48h</td></tr>
+                <tr><td>Release 节奏</td><td>双周一次，不跳票</td></tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
-      <div>
-        <h3>Open Core 三层</h3>
-        <div class="tbl-scroll">
-          <table style="min-width:0">
-            <thead><tr><th>层</th><th>内容</th><th>定价</th></tr></thead>
-            <tbody>
-              <tr><td>L1 开源</td><td>本地 BYOK / 自托管 Gateway 全功能</td><td class="ok">MIT · 永久免费</td></tr>
-              <tr><td>L2 托管</td><td>团队共享 Key 池、用量分析、审计日志</td><td class="warn">按席订阅（内测后）</td></tr>
-              <tr><td>L3 企业</td><td>私有化、合规审计、SLA、专属插件源</td><td class="warn">年度授权</td></tr>
-            </tbody>
-          </table>
+      <div class="note-box">北极星取<b>周深掘检索数</b>而非 Star：Star 是虚荣层，检索行为才证明价值交付。</div>
+    </section>
+
+    <!-- ============ 08 社区与商业化 ============ -->
+    <section id="s9">
+      <div class="sec-head"><span class="no">08</span><h2>社区运营 & 商业化路线</h2></div>
+      <div class="grid2">
+        <div>
+          <h3><span class="h3-cap">08.1</span>开源社区运营</h3>
+          <div class="pillars" style="grid-template-columns:1fr">
+            <div class="pillar"><div class="t">贡献者动线</div><p>good first issue 打标 → CONTRIBUTING 五分钟上手 → 首个插件进 README 展示位。</p></div>
+            <div class="pillar"><div class="t">插件激励</div><p>Hall of Fame + 发布快讯署名；季度评选“最佳检索源插件”。</p></div>
+            <div class="pillar"><div class="t">透明治理</div><p>路线图公开、双周 changelog、RFC 走 Discussions，安全走私密渠道。</p></div>
+          </div>
         </div>
-        <p class="note">红线：<b>不赚检索差价</b>。卖托管与合规，不卖信息本身——这是与闭源 SaaS 的道德分界，也是社区信任的来源。</p>
+        <div>
+          <h3><span class="h3-cap">08.2</span>Open Core 三层</h3>
+          <div class="tbl-scroll">
+            <table style="min-width:0">
+              <thead><tr><th>层</th><th>内容</th><th>定价</th></tr></thead>
+              <tbody>
+                <tr><td>L1 开源</td><td>本地 BYOK / 自托管 Gateway 全功能</td><td><span class="tag green">MIT · 永久免费</span></td></tr>
+                <tr><td>L2 托管</td><td>团队共享 Key 池、用量分析、审计日志</td><td><span class="tag yellow">按席订阅（内测后）</span></td></tr>
+                <tr><td>L3 企业</td><td>私有化、合规审计、SLA、专属插件源</td><td><span class="tag blue">年度授权</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="note-box red">红线：<b>不赚检索差价</b>。卖托管与合规，不卖信息本身——这是与闭源 SaaS 的道德分界，也是社区信任的来源。</div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ 10 风险登记册 ============ -->
-  <section id="s10" class="rise">
-    <div class="sec-head"><span class="idx">09 /</span><h2>风险登记册</h2><span class="leader"></span></div>
-    <div class="tbl-scroll">
-      <table>
-        <thead><tr><th>风险</th><th>等级</th><th>对策</th></tr></thead>
-        <tbody>
-          <tr><td>官方单引擎 MCP 升级为多源仲裁</td><td><span class="lvl mid">中</span></td><td>保持<b>中立聚合</b>定位：官方源可作插件接入我方；自托管 + 开源是不可复制项</td></tr>
-          <tr><td>免费聚合方案（SearXNG 等）分流价格敏感用户</td><td><span class="lvl hi">高</span></td><td>叙事锚定“可信度”而非价格；用 benchmark 数据拉开仲裁层与 SERP 列表的差距</td></tr>
-          <tr><td>上游搜索接口变更 / 限流政策调整</td><td><span class="lvl mid">中</span></td><td>Provider 抽象 + 插件化隔离变更面；CI 版本矩阵 + 社区快速修复通道</td></tr>
-          <tr><td>Token 成本敏感用户流失</td><td><span class="lvl mid">中</span></td><td>TTL 缓存 + 上下文预算已内建；提供单引擎降级模式；文档给出成本测算表</td></tr>
-          <tr><td>社区冷启动失败</td><td><span class="lvl mid">中</span></td><td>双周节奏不跳票 + 48h 响应 + 五目录分发对冲单渠道风险</td></tr>
-          <tr><td>被贴“套壳”标签</td><td><span class="lvl hi">高</span></td><td>持续公开 benchmark 与仲裁算法细节；把熔断/去重/仲裁做成可引用的技术资产</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </section>
+    <!-- ============ 09 风险登记册 ============ -->
+    <section id="s10" style="border-bottom:none">
+      <div class="sec-head"><span class="no">09</span><h2>风险登记册</h2></div>
+      <div class="tbl-scroll">
+        <table>
+          <thead><tr><th>风险</th><th>等级</th><th>对策</th></tr></thead>
+          <tbody>
+            <tr><td>官方单引擎 MCP 升级为多源仲裁</td><td><span class="tag yellow">中</span></td><td>保持<b>中立聚合</b>定位：官方源可作插件接入我方；自托管 + 开源是不可复制项</td></tr>
+            <tr><td>免费聚合方案（SearXNG 等）分流价格敏感用户</td><td><span class="tag red">高</span></td><td>叙事锚定“可信度”而非价格；用 benchmark 数据拉开仲裁层与 SERP 列表的差距</td></tr>
+            <tr><td>上游搜索接口变更 / 限流政策调整</td><td><span class="tag yellow">中</span></td><td>Provider 抽象 + 插件化隔离变更面；CI 版本矩阵 + 社区快速修复通道</td></tr>
+            <tr><td>Token 成本敏感用户流失</td><td><span class="tag yellow">中</span></td><td>TTL 缓存 + 上下文预算已内建；提供单引擎降级模式；文档给出成本测算表</td></tr>
+            <tr><td>社区冷启动失败</td><td><span class="tag yellow">中</span></td><td>双周节奏不跳票 + 48h 响应 + 五目录分发对冲单渠道风险</td></tr>
+            <tr><td>被贴“套壳”标签</td><td><span class="tag red">高</span></td><td>持续公开 benchmark 与仲裁算法细节；把熔断/去重/仲裁做成可引用的技术资产</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
 
-  <footer>
-    <div>DEEPDIG GTM STRATEGY BRIEF · v1.0 · 2026-10-26 · 内部策略文档，数据引用见下</div>
+  </main>
+
+  <!-- ============ toc rail ============ -->
+  <aside class="rail" aria-label="本页目录">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#s1" class="active"><span class="no">01</span>定位声明</a></li>
+      <li><a href="#s2"><span class="no">02</span>市场时机</a></li>
+      <li><a href="#s3"><span class="no">03</span>竞争格局</a></li>
+      <li><a href="#s4"><span class="no">04</span>目标用户</a></li>
+      <li><a href="#s6"><span class="no">05</span>渠道矩阵</a></li>
+      <li><a href="#s7"><span class="no">06</span>90 天作战计划</a></li>
+      <li><a href="#s8"><span class="no">07</span>增长漏斗与指标</a></li>
+      <li><a href="#s9"><span class="no">08</span>社区与商业化</a></li>
+      <li><a href="#s10"><span class="no">09</span>风险登记册</a></li>
+    </ol>
+  </aside>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <div class="f-title">DeepDig GTM 策略简报</div>
+    <p>v1.1 · 2026-10-27 · 内部策略文档。竞争格局参考以下公开资料，竞品功能以官方文档为准。</p>
     <div class="src">
-      竞争格局参考：
       <a href="https://www.ithome.com/1/008/767.htm">搜索类 MCP Server 选型全解析（2026）</a> ·
       <a href="https://www.ithome.com/1/008/153.htm">AI Agent 搜索 MCP 选型推荐</a> ·
       <a href="https://help.aliyun.com/zh/model-studio/web-search-for-coding-plan">阿里云百炼联网搜索 MCP</a> ·
       <a href="https://www.iai88.com/go/?url=aHR0cHM6Ly9kb2NzLmJpZ21vZGVsLmNuL2NuL2NvZGluZy1wbGFuL21jcC9zZWFyY2gtbWNwLXNlcnZlcg==">智谱搜索 MCP Server</a>
     </div>
-    <div class="sig">// 深掘 · DIG DEEPER, VERIFY TOGETHER · ai-guru-global</div>
-  </footer>
+    <div class="sig">DEEPDIG · DIG DEEPER, VERIFY TOGETHER · AI-GURU-GLOBAL</div>
+  </div>
+</footer>
 
-</div>
+<script>
+  (function(){
+    var links=[].slice.call(document.querySelectorAll('.rail a'));
+    var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+    if('IntersectionObserver' in window){
+      var current=null;
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(e.isIntersecting){
+            if(current)current.classList.remove('active');
+            current=map[e.target.id];
+            if(current)current.classList.add('active');
+          }
+        });
+      },{rootMargin:'-20% 0px -65% 0px'});
+      document.querySelectorAll('main section[id]').forEach(function(s){io.observe(s)});
+      var riser=new IntersectionObserver(function(es){
+        es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in-view');riser.unobserve(e.target)}});
+      },{threshold:.08});
+      document.querySelectorAll('.rise').forEach(function(el){riser.observe(el)});
+    }else{
+      document.querySelectorAll('.rise').forEach(function(el){el.classList.add('in-view')});
+    }
+  })();
+</script>
 </body>
 </html>

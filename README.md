@@ -171,6 +171,9 @@ python -m deepdig.server
 cp .env.example .env
 ```
 
+> 不想手写配置？打开 [`config/index.html`](./config/index.html)（本地静态页，数据不离开浏览器），
+> 填入 Key 后一键生成 `.env` 与 IDE 的 `mcp_settings.json`。
+
 ```ini
 # .env
 DASHSCOPE_API_KEY="sk-xxxx"       # 阿里百炼

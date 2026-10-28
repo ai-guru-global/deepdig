@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- Local AppKey configurator (`config/index.html`): manage DASHSCOPE / ZHIPU /
+  MOONSHOT keys plus tuning and deployment params in the browser; exports
+  `.env` and `mcp_settings.json`, imports `.env`, persists to localStorage only.
+
+### Changed
+
+- GTM strategy brief (`gtm/index.html`) redesigned in an enterprise
+  Carbon-white visual world; content unchanged. The shared visual language is
+  documented in `DESIGN.md`.
+
 ## [0.1.0] - 2026-10-26
 
 ### Added

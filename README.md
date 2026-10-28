@@ -121,10 +121,19 @@ deepdig/
 ├── pyproject.toml              # 项目依赖与 CLI 入口声明
 ├── README.md                   # 项目工程文档与规范说明
 ├── LICENSE                     # MIT 开源协议
+├── CHANGELOG.md                # 版本日志（Keep a Changelog + SemVer）
+├── CONTRIBUTING.md             # 贡献指南
+├── CODE_OF_CONDUCT.md          # 社区行为准则
+├── SECURITY.md                 # 安全策略与漏洞上报
+├── DESIGN.md                   # 文档/工具视觉世界契约（Carbon 白底）
 ├── .env.example                # 环境变量配置模板
-├── .github/workflows/ci.yml    # CI：ruff + pytest（Python 3.11/3.12 矩阵）
+├── .github/workflows/          # ci.yml（ruff+pytest）· publish.yml（PyPI）
+├── config/
+│   └── index.html              # 本地 AppKey 配置工具（生成 .env 与 mcp_settings.json）
 ├── skill/
 │   └── deepdig.md              # 配套 IDE Skill 规范（调用时机与仲裁规则）
+├── gtm/
+│   └── index.html              # GTM 策略简报（企业级白底）
 ├── bench/
 │   ├── queries.json            # 基准评测 query 集（新闻/技术/争议论断）
 │   └── run_bench.py            # Benchmark 评测脚本（信源/延迟/交叉验证）
@@ -140,7 +149,8 @@ deepdig/
 │       └── kimi.py             # Moonshot (Kimi 研报提取)
 └── tests/
     ├── test_providers.py       # 并发与熔断单元测试
-    └── test_server.py          # 去重/缓存/截断/门禁单元测试
+    ├── test_server.py          # 去重/缓存/截断/门禁单元测试
+    └── test_plugins.py         # Provider 插件机制单元测试
 ```
 
 ---

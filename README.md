@@ -13,6 +13,8 @@
 
 `deepdig` 是一个面向现代 AI IDE（如 Qoder、CodeBuddy、Cursor、Windsurf）和 Agent 环境的高性能 MCP（Model Context Protocol）服务。它通过异步并发调度主流大模型与搜索引擎的底层原生检索能力（Qwen 百炼、智谱 GLM、Moonshot Kimi 等），提供低延迟、防幻觉的多源交叉检索与事实核查管道。
 
+**在线页面**：[项目主页](https://ai-guru-global.github.io/deepdig/) · [在线配置工具](https://ai-guru-global.github.io/deepdig/config/)（填 Key 一键生成配置，数据不离开浏览器） · [GTM 策略简报](https://ai-guru-global.github.io/deepdig/gtm/)
+
 ---
 
 ## 核心定位：与抓取工具的区别
